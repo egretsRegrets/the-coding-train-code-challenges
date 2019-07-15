@@ -8,7 +8,12 @@ class Unicorn {
     }
 
     hits(train) {
-        return collideRectRect(this.x, this.y, this.r, this.r, train.x, train.y, train.r, train.r);
+        let unicornCenterX = this.x + this.r * 0.5;
+        let unicornCenterY = this.y + this.r * 0.5;
+        let trainCenterX = train.x + train.r * 0.5;
+        let trainCenterY = train.y + train.r * 0.5;
+
+        return collideCircleCircle(unicornCenterX, unicornCenterY, this.r, trainCenterX, trainCenterY, train.r);
     }
 
     jump() {
