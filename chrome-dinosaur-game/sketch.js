@@ -6,6 +6,8 @@ let uImg;
 let tImg;
 let bImg;
 
+let trains = [];
+
 // p5 lifecycle
 function preload() {
     uImg = loadImage('assets/unicorn.png');
@@ -17,7 +19,21 @@ function setup() {
     unicorn = new Unicorn();
 }
 function draw() {
+    if (random(1) < 0.003) {
+        trains.push(new Train())
+    }
+
     background(bImg);
+
+    trains.forEach(t => {
+        t.move();
+        t.show();
+        if (unicorn.hits(t)) {
+            console.log('Game Over!');
+            noLoop();
+        }
+    })
+
     unicorn.show(); 
     unicorn.move();
 }

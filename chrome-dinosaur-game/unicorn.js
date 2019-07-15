@@ -1,15 +1,21 @@
 class Unicorn {
     constructor() {
-        this.r = 150;
+        this.r = 100;
         this.x = 50;
         this.y = height - this.r;
         this.vy = 0;
         this.gravity = 2;
     }
 
+    hits(train) {
+        return collideRectRect(this.x, this.y, this.r, this.r, train.x, train.y, train.r, train.r);
+    }
+
     jump() {
         // update velocity
-        this.vy = -25;
+        if (this.y === height - this.r) {
+            this.vy = -30;
+        }
     }
 
     move() {
